@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--  viewport：视口设置/width=device-width：自动获取设备宽度/user-scalable=yes：用户是否可缩放/boolean/initial-scale=1.0：初始缩放比例，不设置缩放就不写/maximum-scale：最大缩放比列 -->
+    <meta name="viewport" content="width=device-width, user-scalable=yes,initial-scale=1.0,maximum-scale" >
+    <title>app适配</title>
+    <!-- css设置视口 和清除移动端默认样式-->
+    <style>
+        /* html字体大小默认16px，设置html初始字体大小，1rem=html初始字体大小  初始化100%，62.5%*16=10px 设置后1rem=10px*/ 
+        html{
+            font-size: 100%;
+        }
+        html{
+            font-size: 62.5%;
+        }
+        body{font-family: Helvetica;}/* 字体 */
+        body *{
+            /* 横竖屏字体变化 去除用户选中*/
+            -webkit-text-size-adjust: 100%;
+            -webkit-user-select: none;
+        }
+        a,input,button{
+            /* 按下阴影 */
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        }
+        input,button{
+            border:none;
+            -moz-appearance: none;
+            /* ios上按钮圆角问题 输入框圆角问题 去掉鼠标点击默认黄色边框*/
+            -webkit-appearance: none;
+            border-radius: 0;
+            outline: medium;
+            background-color: transparent;
+        }
+    </style>
+</head>
+<body>
+    <!-- js设置视口 -->
+    <script>
+        var html=document.documentElement;
+        var whtml=html.getBoundingClientRect().width//获取可视区宽度
+        html.style.fontSize=whtml/7.5+'px'//7.5根据设计图像素宽度设置，此设计图宽度像素750，设置后html字体大小为10px
+    </script>
+    <!-- 解决某些ios版本不支持fixed ；手机软键盘唤醒状态下，fiexd元素会跟着上浮 ，ie6不支持； 使用absolute来模拟fiexd-->
+    <script>
+        /* 总结 */
+        /* 1：设置设备视口 2：设置字体大小rem 3：flex布局 4：背景图大小background-size */
+    </script>
+</body>
+</html>
