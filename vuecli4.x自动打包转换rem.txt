@@ -1,0 +1,25 @@
+vue cli 4.x 自动把px转换为rem
+
+npm i lib-flexible postcss-px2rem 
+
+1、在根目录添加postcss.config.js文件
+
+
+
+
+module.exports = {
+ plugins: {
+   autoprefixer: {},
+   "postcss-px2rem": {
+     remUnit: 37.5, // 50px = 1rem
+     remPrecision: 2 // rem的小数点后位数
+   }
+ }
+};
+
+
+
+
+2、在main.js添加
+
+import 'lib-flexible/flexible'
