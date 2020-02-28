@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文件读取</title>
+
+  	// FileReader共有4种读取方法：
+        // 1.readAsArrayBuffer(file)：将文件读取为ArrayBuffer。
+        // 2.readAsBinaryString(file)：将文件读取为二进制字符串
+        // 3.readAsDataURL(file)：将文件读取为Data URL
+        // 4.readAsText(file, [encoding])：将文件读取为文本，encoding缺省值为'UTF-8'
+</head>
+<body>
+    <input type="file" class="file" multiple>
+    <!--<select name="" id="">
+        <option value=""></option>
+    </select>-->
+    <img src="" alt="" id="img">
+    <script>
+        /*获取到了文件表单元素*/
+        var file = document.querySelector('.file');
+        /*选择文件后触发*/
+        file.onchange = function () {
+            /*初始化了一个文件读取对象*/
+            var reader = new FileReader();
+            /*读取文件数据  this.files[0]-二进制Blob对象 文件表单元素选择的第一个文件 */
+            reader.readAsDataURL(this.files[0]);
+            /*读取的过程就相当于 加载过程 */
+            /*读取完毕  预览 */
+            reader.onload = function () {
+                /*读取完毕 base64位数据  表示图片*/
+                console.log(this.result);
+                document.querySelector('#img').src = this.result;
+
+		/*解析xlsx等excel格式文件，下载xlsx 在文件中引入 使用read方法 ，type多种类格式 ，workbook为表对象*/
+      		  var workbook = XLSX.read(data, {type: 'binary'});
+
+
+            }
+        }
+    </script>
+</body>
+</html>
+
+
+xlsx的type类型
+base64: 以base64方式读取；
+
+
+binary: BinaryString格式(byte n is data.charCodeAt(n))
+
+
+string: UTF8编码的字符串；
+
+
+buffer: nodejs Buffer；
+
+
+array: Uint8Array，8位无符号数组；
+
+
+file: 文件的路径（仅nodejs下支持）
+xlsx读取workbook方法
+XLSX.utils.sheet_to_csv：生成CSV格式
+
+
+XLSX.utils.sheet_to_txt：生成纯文本格式
+
+
+XLSX.utils.sheet_to_html：生成HTML格式
+
+
+XLSX.utils.sheet_to_json：输出JSON格式
+
