@@ -1,0 +1,42 @@
+.env 
+# 所有环境默认
+
+# 页面 title 前缀
+VUE_APP_TITLE=成都市投资促进重大项目管理和服务平台
+
+# 网络请求公用地址
+VUE_APP_API=http://222.211.87.12:9781
+
+# 仓库地址
+VUE_APP_REPO=https://github.com/d2-projects/d2-admin-start-kit
+
+.env.development
+# 开发环境
+
+# 页面 title 前缀
+VUE_APP_TITLE=成都市投资促进重大项目管理和服务平台
+
+# 网络请求公用地址
+VUE_APP_API=http://222.211.87.12:9781
+
+.env.production
+# 生产环境
+
+# 页面 title 前缀
+VUE_APP_TITLE=
+
+# 指定构建模式
+NODE_ENV=production
+
+
+# 网络请求公用地址
+VUE_APP_API=http://222.211.87.12:9781
+
+process.env.VUE_APP_API调用环境变量
+
+在package.json中修改启动命令 --mode 环境文件后缀名
+"scripts": {
+    "serve": "vue-cli-service serve --mode development",
+    "build": "vue-cli-service build --mode production",
+    "lint": "vue-cli-service lint"
+  },

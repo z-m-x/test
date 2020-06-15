@@ -1,0 +1,59 @@
+本地仓库操作----------
+正常阶段
+
+绑定本地仓库的帐号邮箱
+git config --global user.name xxx
+git config --global user.email xxx
+
+创建本地仓库
+mkdir xxx cd xxx
+
+让git管理此仓库
+git初始化
+
+
+功能操作指令
+git status查看当前状态
+git add xxx1 xxx2 xxx3将文件存储入暂存区git add。添加当前目录到暂存区
+git commit -m“注释内容”
+
+
+版本回退阶段
+1：查看版本，确定需要回到什么版本
+git log显示操作日志（commitID，操作人，时间，备注）最上面的最新
+git log --pretty = oneline显示操作日志（commitID，备注）
+2：回退操作
+git reset --hard  a71f17b57c5039bc09d09d181030cd65f8bf6faa 
+3：回退完成之后前进到其他版本
+git reflog查看操作日志拿到commitID再次使用git reset --hard commitID去到指定版本
+本地仓库操作----------
+
+操作远程仓库----------
+git clone origin克隆远程仓库到本地
+git pull拉取远程仓库代码
+git push提交代码到远程仓库
+git clone -b dev 代码仓库地址 （dev是分支名称） 拉取远程分支代码
+操作远程仓库----------
+
+分支
+操作git的时间轴就是一个分支，称为master分支
+git branch查看分支当前分支最前面有个标志
+git branch xxx创建分支
+git checkout xxx切换分支
+git branch -d xxx删除分支
+
+合并分支
+1修改或添加先添加到本地版本库
+2切换到master主分支
+3git merge xxx合并到主分支
+
+解决冲突
+1先行下拉自动合并冲突到冲突文件中
+2保留需要的代码
+3重新提交到本地仓库再到远程仓库
+
+忽略上传文件
+1在根目录新建.gitignore命令行触摸.gitignore
+过滤整个文件夹/目录名/ 
+过滤所有.xxx后缀文件* .xxx
+过滤特定文件/mtk/do.c

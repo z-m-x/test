@@ -1,0 +1,108 @@
+/* 异步获取用户模块存储在state中 */
+getUserModules(context) {
+    <!-- 此方法返回一个promise实例，用于后面调用可以取到此promise成功后保存在resole里面的数据 -->
+  return new Promise(async (resolve, reject) => {
+    await getCurrentUserInfo({}).then(res => {
+      createMenuRoutesDeep(res.modules)
+      /* 递归生成树菜单和路由并设置用户模块 */
+      function createMenuRoutesDeep(modules) {
+        let asyncAsidesMenu = createMenuDeep(modules)
+        // 递归生成树菜单
+        function createMenuDeep(obj) {
+          let menuArr = [];
+          if (obj instanceof Object && !Array.isArray(obj) && obj.hasAuth) {
+            menuArr.push({
+              path: obj.modulePath ? obj.modulePath : "",
+              title: obj.name,
+              icon: obj.icon ? obj.icon : "plus-square"
+            });
+          }
+          if (obj instanceof Array) {
+            for (let i of obj) {
+              if (!i.children && i.hasAuth) {
+                menuArr.push({
+                  path: i.modulePath ? i.modulePath : "",
+                  title: i.name,
+                  icon: i.icon ? i.icon : "plus-square"
+                });
+              } else if (i.hasAuth) {
+                menuArr.push({
+                  path: i.modulePath ? i.modulePath : "",
+                  title: i.name,
+                  icon: i.icon ? i.icon : "plus-square",
+                  children: createMenuDeep(i.children)
+                });
+              }
+            }
+          }
+          return menuArr;
+        }
+        /* 递归生成动态路由 */
+        function createRouterDeep(obj) {
+          let menuArr = [];
+          // let modulesDir = this.cloneDir()
+          if (obj instanceof Object && !Array.isArray(obj) && obj.hasAuth) {
+            menuArr.push({
+              path: obj.modulePath ? obj.modulePath : "",
+              component:
+                obj.modulePath !== undefined
+                  ? _import(obj.modulePath.replace("/", ""))
+                  : "",
+              name: obj.code,
+              meta: {
+                title:obj.name,
+                hasAuth: obj.hasAuth,
+                id: obj.id,
+                cache: true
+              }
+            });
+          }
+          if (obj instanceof Array) {
+            obj.forEach((currentV, i, arr) => {
+              if (!currentV.children && currentV.hasAuth) {
+                menuArr.push({
+                  path: currentV.modulePath ? currentV.modulePath : "",
+                  component:
+                    currentV.modulePath !== undefined
+                      ? _import(currentV.modulePath.replace("/", ""))
+                      : "",
+                  name: currentV.code,
+                  meta: {
+                    title:currentV.name,
+                    hasAuth: currentV.hasAuth,
+                    id: currentV.id,
+                    cache: true
+                  }
+                });
+              } else if (currentV.hasAuth) {
+                menuArr.push({
+                  path: currentV.modulePath ? currentV.modulePath : "",
+                  name: currentV.code,
+                  meta: {
+                    title:currentV.name,
+                    hasAuth: currentV.hasAuth,
+                    id: currentV.id,
+                    cache: true
+                  },
+                  children: createRouterDeep(currentV.children)
+                });
+              }
+            });
+          }
+          return menuArr;
+        }
+        let routes = createRouterDeep(modules).map(item => {
+          return item.children;
+        });
+        let asyncRoutes = [];
+        routes.forEach((currentV, index, arr) => {
+          currentV.forEach((currentVa, i, array) => {
+            asyncRoutes.push(currentVa);
+          });
+        });
+        resolve({asyncRoutes,asyncAsidesMenu})//调用此方法过后返回的promise.then可以获取到处理后的结果数据
+        context.commit('setUserRoutes',{asyncRoutes,asyncAsidesMenu})//保存路由和树菜单到state
+      }
+    })
+  })
+},

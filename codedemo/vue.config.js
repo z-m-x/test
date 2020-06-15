@@ -11,7 +11,13 @@ module.exports = {
                 }
             }
         }
-    }
+    },
+      /* webpack配置 */
+      configureWebpack: {
+        externals: {//cdn引入配置，放在public或者static静态文件内
+          echarts: 'echarts'
+        }
+      }
 }
 /* 在企业级封装时
 axios.get("api/test/login")

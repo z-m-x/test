@@ -1,8 +1,10 @@
 import axios from 'axios'
 let $axios= axios.create({
-        baseURL:'/api',
+        // baseURL:'/api',
         timeout:8000
 })
+/* 终止请求 */
+$axios.abort()
 /* 请求拦截 */
 $axios.interceptors.request.use(
         config => {

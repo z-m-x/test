@@ -1,0 +1,26 @@
+1新建文件
+
+2寫入
+import moment from 'moment'//時間格式化器 yarn add moment 安裝
+可添加多個過濾函數
+/* 
+時間過濾 
+
+|value:傳入的初始數據||過濾器名字| | format:想要的格式  |
+引用方法：{{模板中變量|timeFormat("YYYY-MM-DD hh:mm:ss")}}
+*/ 
+
+const timeFormat = (value, format) => {
+    return moment(value).format(format);
+};
+ 
+export {
+    timeFormat
+}
+
+3在main中全局註冊
+所有的作为到filter变量里去
+import * as filters from './libs/filter'
+Object.keys(filters).forEach(key => {
+    Vue.filter(key, filters[key])
+})

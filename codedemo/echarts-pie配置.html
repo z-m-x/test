@@ -23,19 +23,21 @@
                 fontSize: 24,
                 align: "center"
               },
-
-              b: {
-                fontSize: 14,
-                lineHeight: 20,
-                color: "#fff"
-              }
+	//添加图片
+             hotimg: {
+                backgroundColor: {
+                  image: hotimg//先在组件中引入图片 import hotimg from "@/assets/images/icon_up_red(1).png";
+                },
+                width: 14,
+                height: 14
+              },
             },
             // 格式化
             formatter: function(data) {
               // 设置圆饼图中间文字排版
               if (data.value == 0.11) return "";
               //键值对形式，用键写样式
-              return "{a|" + data.value * 100 + "} \n " + "{b|⇧10}";
+              return "{a|" + data.value * 100 + "} \n " + "{hotimg |}";
             }
           },
           hoverAnimation: false,//关闭鼠标移入动画
@@ -58,3 +60,8 @@
     // 使用刚指定的配置项和数据显示图表。
     summarizeChar.setOption(summarizeCharOptions);
   }
+  <!-- 自适应 -->
+  window.addEventListener("resize", ()=> {
+    this.myChart.resize();
+  });
+  this.myChart.resize();

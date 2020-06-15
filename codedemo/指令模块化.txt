@@ -1,0 +1,35 @@
+1新建modules文件夹，新建指令文件
+2指令文件写入并暴露指令钩子
+// 元素隐藏显示指令
+export default {
+  // 只调用一次，指令第一次绑定到元素时调用
+  bind (el, binding, vnode) {
+    el.style.display = binding.value ? 'block' : 'none'
+  },
+  // 被绑定元素插入父节点时调用
+  inserted (el, binding, vnode) {
+    console.log('inserted')
+  },
+  // 所在组件的 VNode 更新时调用
+  update (el, binding, vnode) {
+    console.log('update')
+    el.style.display = binding.value ? 'block' : 'none'
+  },
+  // 指令所在组件的 VNode 及其子 VNode 全部更新后调用
+  componentUpdated (el, binding, vnode) {
+    console.log('componentUpdated')
+  },
+  unbind (el, binding, vnode) {
+    console.log('unbind')
+  }
+}
+3过index.js管理自定义指令。添加新指令只需在modules中加入模块，并引入index.js
+import stealth from './modules/stealth'
+...
+export {stealth}
+4main中全局注册指令，*as标识此文件所有按需暴露的模块（相当于...）
+import * as directives from './directives'
+// 注册指令
+Object.keys(directives).forEach(k => Vue.directive(k, directives[k]))
+5使用
+v-

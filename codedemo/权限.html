@@ -1,0 +1,98 @@
+router.beforeEach(async (to, from, next) => {
+    // 确认已经加载多标签页数据 https://github.com/d2-projects/d2-admin/issues/201
+    await store.dispatch('d2admin/page/isLoaded')
+    // 确认已经加载组件尺寸设置 https://github.com/d2-projects/d2-admin/issues/198
+    await store.dispatch('d2admin/size/isLoaded')
+    // 进度条
+    NProgress.start()
+    // 关闭搜索面板
+    store.commit('d2admin/search/set', false)
+    if (to.path === '/login') {
+      next()
+    } else {
+      // 这里暂时将cookie里是否存有token作为验证是否登录的条件,请根据自身业务需要修改
+      const token = util.cookies.get('token')
+      if (token && token !== 'undefined') {
+          <!-- 抓取获取到用户信息之后存储在vuex中的状态。刷新页面会导致vuex重置，以此来判断是否是用户刷新页面操作 -->
+        const infoAsidesMenu = store.state.d2admin.user.infoAsidesMenu
+        const infoRoutes = store.state.d2admin.user.infoRoutes
+        if (infoAsidesMenu.length === 0 || infoRoutes.length === 0) {
+          /* promise发送请求同步拿到模块处理成路由格式 */
+          await store.dispatch('d2admin/user/getUserModules').then(res => {
+            const frameInRoutes = [
+              {
+                path: '/',
+                redirect: { name: 'index' },
+                component: layoutHeaderAside,
+                children: [
+                  // 首页
+                  {
+                    path: 'index',
+                    name: 'index',
+                    meta: {
+                      auth: true
+                    },
+                    component: _import('system/index')
+                  },
+                  // 系统 前端日志
+                  {
+                    path: 'log',
+                    name: 'log',
+                    meta: {
+                      title: '前端日志',
+                      auth: true
+                    },
+                    component: _import('system/log')
+                  },
+                  // 刷新页面 必须保留
+                  {
+                    path: 'refresh',
+                    name: 'refresh',
+                    hidden: true,
+                    component: _import('system/function/refresh')
+                  },
+                  // 页面重定向 必须保留
+                  {
+                    path: 'redirect/:route*',
+                    name: 'redirect',
+                    hidden: true,
+                    component: _import('system/function/redirect')
+                  },
+                  ...res.asyncRoutes
+                ]
+              },
+  
+            ]
+            router.addRoutes(frameInRoutes)
+            store.commit('d2admin/page/init', frameInRoutes, { root: true })//初始化页面，把路由扔进去
+            store.commit("d2admin/menu/asideSet", res.asyncAsidesMenu);//重置树菜单
+            store.commit('d2admin/menu/headerSet', [
+              {
+                path: '/index',
+                title: '首页',
+                icon: 'home'
+              },
+              ...res.asyncAsidesMenu
+            ]
+            )//设置顶部菜单
+            store.dispatch('d2admin/page/openedLoad', null, { root: true })
+            store.commit('d2admin/page/currentSet', 'route-name')
+            next(to.path)//去到将要去的路由
+          })
+  
+        }
+        next()
+      } else {
+        // 没有登录的时候跳转到登录界面
+        // 携带上登陆成功之后需要跳转的页面完整路径
+        next({
+          name: 'login',
+          query: {
+            redirect: to.fullPath
+          }
+        })
+        // https://github.com/d2-projects/d2-admin/issues/138
+        NProgress.done()
+      }
+    }
+  })

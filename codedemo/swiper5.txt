@@ -1,0 +1,3 @@
+使用vue-awesome-swiper出现Uncaught RangeError: Maximum call stack size exceeded的问题
+swiper组件的name属性不能和组件名同名
+

@@ -1,6 +1,6 @@
 vue cli 4.x 自动把px转换为rem
 
-npm i lib-flexible postcss-px2rem 
+npm i lib-flexible postcss-px2rem（postcss-px2rem-exclude）
 
 1、在根目录添加postcss.config.js文件
 
@@ -10,9 +10,9 @@ npm i lib-flexible postcss-px2rem
 module.exports = {
  plugins: {
    autoprefixer: {},
-   "postcss-px2rem": {
-     remUnit: 37.5, // 50px = 1rem
-     remPrecision: 2 // rem的小数点后位数
+   "postcss-px2rem-exclude": {
+     remUnit: 75, // 50px = 1rem
+    ?exclude:?/node_modules/i
    }
  }
 };
