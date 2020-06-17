@@ -16,7 +16,6 @@ export default {
   name: "breadcrumb",
   props: {
     currentPageName: {
-      required: true,
       type: String,
       default: () => ""
     }

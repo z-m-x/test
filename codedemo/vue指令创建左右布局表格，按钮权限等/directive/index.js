@@ -10,8 +10,3 @@ export {
     createtable,
     createcompanydetailstable
 }
-
-/* 最后在main中注册全局指令 */
-/* 指令注册 */
-import * as directives from './libs/directive'
-Object.keys(directives).forEach(k => Vue.directive(k, directives[k]))

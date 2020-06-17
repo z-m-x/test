@@ -1,8 +1,8 @@
 <template>
   <div>
     <el-table
-      :border='tableData.border'
-      :data="tableData.data"
+      :border="getTableData.border"
+      :data="getTableData.data"
       style="width: 100%"
       ref="multipleTable"
       @selection-change="handleSelectionChange"
@@ -16,7 +16,7 @@
           <p>序号</p>
         </template>
       </el-table-column>
-      <template v-for="(item,index) in tableData.thConfig">
+      <template v-for="(item,index) in getTableData.thConfig">
         <!-- 需要从复杂数据结构中自定义单元格内容 在以下做出处理即可-->
         <!--
          参数说明：
@@ -26,13 +26,14 @@
         -->
         <el-table-column
           :key="index"
+          :show-overflow-tooltip='true'
           :label="item.label"
           :width="item.width?item.width:0"
           :min-width="item.minwidth?item.minwidth:0"
           v-if="item.columnType==='slot'"
         >
           <template slot-scope="scope">
-            <slot :name="item.slotName" :currentRowData="scope.row"></slot>
+            <slot :name="item.slotName" :currentRowData="scope.row" :currentRowIndex="scope.$index"></slot>
           </template>
         </el-table-column>
         <!-- 需要从复杂数据结构中自定义单元格内容 在以上做出处理即可-->
@@ -40,6 +41,7 @@
         <!--不需要做处理的普通数据 -->
         <el-table-column
           v-else
+          :show-overflow-tooltip='true'
           :key="index"
           :prop="item.prop"
           :label="item.label"
@@ -48,16 +50,23 @@
         ></el-table-column>
       </template>
       <!-- 最右侧操作详情 -->
-      <el-table-column v-if="isShowOperation" fixed="right" label="操作" width="120">
+      <el-table-column v-if="isShowOperation" label="操作" width="100">
         <template slot-scope="scope">
-          <el-button @click="handelDetails(scope.$index,scope.row)" type="text" size="small">详情</el-button>
+          <el-button @click="handelDetails(scope.$index,scope.row)" type="text">详情</el-button>
         </template>
       </el-table-column>
-      
     </el-table>
     <!-- 分页 -->
     <div class="pagination-container">
-      <el-pagination background layout="prev, pager, next" :total="tableData.total" :hide-on-single-page="true" ></el-pagination>
+      <el-pagination
+        @current-change="changePageNumber"
+        background
+        :pageSize="getTableData.pageSize"
+        layout="prev, pager, next"
+        :total="getTableData.total"
+        :current-page.sync="getTableData.pageNumber"
+        :hide-on-single-page="true"
+      ></el-pagination>
     </div>
   </div>
 </template>
@@ -65,52 +74,52 @@
 
 <script>
 /* 引入表格配置文件 */
-import eltableConfig from "./eltableconfig.js";
+import eltableConfig from "./thmodel";
 let eltableConfigs = eltableConfig;
 export default {
   name: "eltable",
-  props: {
+  watch: {
     tableDatas: {
-      type: Object,
-      default: () => {
-        return {
-          border:true,
-          total:1,
-          show: ["selection", "index"], //需要显示的基础列type类型，传入数组可覆盖默认值
-          tableId: "initTable", //表格唯一id，用于映射表格配置文件获取对应表头
-          data: [
-            {
-              date: "2016-05-02",
-              name: "王小虎",
-              address: "上海市普陀区金沙江路 1518 弄"
-            }
-          ]
-        };
+      deep: true,
+      handler: function(v, old) {
+        this.$nextTick(() => {
+          this.tableData.pageNumber = v.currentPage;
+          this.tableData.data = v.datas;
+          this.tableData.total = v.total;
+        });
       }
     }
   },
+  props: ["tableDatas"],
   data() {
-    return {};
+    return {
+      tableData: {
+        border: this.$props.tableDatas.border, //纵向边框
+        thConfig: eltableConfigs[this.$props.tableDatas.tableId], //获取表格配置中对应的表格配置信息赋值给thConfig
+        data: this.$props.tableDatas.datas, //表格数据
+        total: this.$props.tableDatas.total, //总条数
+        pageSize: this.$props.tableDatas.pageSize, //每页显示条数
+        pageNumber: this.$props.tableDatas.currentPage //当前页码
+      }
+    };
   },
   methods: {
+    /* 当前页码改变 */
+    changePageNumber(pageNumber) {
+      this.$emit("getPageNumber", pageNumber,this.$props.tableDatas.tableId);
+    },
     /* 多选框变化触发事件回传给父组件 */
     handleSelectionChange(selectedVlues) {
       this.$emit("handelSelected", selectedVlues);
     },
     /* 点击详情触发事件回传给父组件 */
     handelDetails(currentRowIndex, currentRow) {
-      this.$emit("handelDetails", { currentRowIndex, currentRow });
+      this.$emit("handelDetails", { currentRowIndex, currentRow ,tableId:this.$props.tableDatas.tableId});
     }
   },
   computed: {
-    tableData() {
-      let tableId = this.$props.tableDatas.tableId; //获取传入的当前表格id
-      return {
-        border:this.$props.tableDatas.border,//纵向边框
-        thConfig: eltableConfigs[tableId], //获取表格配置中对应的表格配置信息赋值给thConfig
-        data: this.$props.tableDatas.data ,//表格数据
-        total:this.$props.tableDatas.total,//总条数
-      };
+    getTableData() {
+      return this.tableData;
     },
     isShowIndex() {
       if (this.$props.tableDatas.show instanceof Array) {
@@ -145,22 +154,7 @@ export default {
         }
       }
       return false;
-    },
-    /* 最右侧操作组，是否需要CRUD功能判断*/
-      isShowOperation() {
-      if (this.$props.tableDatas.show instanceof Array) {
-        let show = [...this.$props.tableDatas.show];
-        for (let i of show) {
-          if (Object.keys(i)[0] === "operation") {
-            return {show:true,i}
-          }else {
-             return {show:false}
-          }
-        }
-      }
-      return {show:false};
-    }
-
+    }
   }
 };
 </script>
@@ -171,5 +165,11 @@ export default {
   background: white;
   display: block;
   text-align: right;
+}
+
+::v-deep {
+  .el-button {
+    padding: 0 !important;
+  }
 }
 </style>
