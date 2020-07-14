@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    body,html{
+        height: 400px;
+        overflow: hidden;
+
+    }
+    body{
+        overflow-y: scroll;
+    }
+    *{
+        padding: 0;margin: 0;
+    }
+    ul{
+        list-style: none;
+        display: flex;
+        flex-flow: wrap ;
+        margin-top: 100px
+        ;
+    }
+    li{
+        width: 300px;
+        height: 200px;
+    }
+    img{
+        width: 100%;
+        height: 100%;
+        border: 1px solid black;
+        box-sizing: border-box;
+    }
+</style>
+<body>
+    <input type="file">
+    <ul>
+    </ul>
+    <script>
+            let imagsarr=[{image:'./imgs/1.jpg'},{image:'./imgs/2.jpg'},{image:'./imgs/3.jpg'},{image:'./imgs/4.jpg'},{image:'./imgs/5.jpg'},{image:'./imgs/6.jpg'},{image:'./imgs/7.jpg'},{image:'./imgs/8.jpg'},{image:'./imgs/9.jpg'},{image:'./imgs/10.jpg'},{image:'./imgs/11.jpg'},{image:'./imgs/12.jpg'},{image:'./imgs/13.jpg'},{image:'./imgs/14.jpg'},{image:'./imgs/15.jpg'},{image:'./imgs/16.jpg'}]
+            /* 循环创建li */
+            let domli= imagsarr.map((item)=>{
+               return `<li class='item'><img src=' '  data-view='${item.image}'/></li>`
+            })
+            /* 获取ul */
+           var uldom= document.querySelector('ul')
+           /* 循环出来的li插入到ul中 */
+           uldom.innerHTML=domli.join('')
+            /* 加载首屏图片开始-------------------------------------------------------- */
+            /* 获取所有li */
+            let lis=document.querySelectorAll('.item')
+            /* 获取body高度 ，不加上边框*/
+            let bodydom=document.querySelector('body')
+            let bodyheight=bodydom.clientHeight
+            /* 循环li 排除首屏加载图片*/
+            for(let item of lis){
+                /* 如果li元素距离body顶部高度小于body高度 */
+                if(item.offsetTop<bodyheight) item.children[0].setAttribute('src',item.children[0].dataset.view )  
+            }
+            /* 加载首屏图片结束---------------------------------------------------------*/
+            /* 监听body滚动事件 */
+            document.body.addEventListener('scroll',()=>{
+                /* 判断li是否出现在可视区 */
+                for( item of lis){ /* 循环li*/
+                    if(item.children[0].getAttribute('src')===' '){/* 如果li的img标签上src属性为空 继续 */
+                    /* 如果此元素距离body顶部的距离<body高度+上方不可见内容高度 就把data属性给到src上*/
+                    if(item.offsetTop<bodyheight+bodydom.scrollTop)item.children[0].setAttribute('src',item.children[0].dataset.view ) 
+                    }
+                }
+            })
+    </script>
+</body>
+</html>
