@@ -1,4 +1,5 @@
 /*   
+    在echarts中有些属性会存在获取值为0 ,可以使用定时器等异步去获取到
     "echarts": "^4.7.0"
     cnpm下载的echarts--src--chart--tree--treeLayout.js修改内容或者在静态文件内的echartsjs文件内在configjs配置webpack，在main引入js文件挂载到vue实例原型上，防止多人开发被覆盖
     else if (orient === 'TB' || orient === 'BT') {
@@ -65,7 +66,7 @@ export default {
             percent: "29.28%",
             sh_type: "工商股东",
             level: "1",
-            children: []
+            children: [],
           },
           {
             eid: "822d475c-e3a1-4062-b286-4508bedb2cda",
@@ -96,11 +97,11 @@ export default {
                     percent: "100%",
                     sh_type: "工商股东",
                     level: "3",
-                    children: []
-                  }
-                ]
-              }
-            ]
+                    children: [],
+                  },
+                ],
+              },
+            ],
           },
           {
             eid: "7e1f5e3b-b9b0-404d-adc5-de82393efc36",
@@ -131,7 +132,7 @@ export default {
                     percent: "70.00%",
                     sh_type: "工商股东",
                     level: "3",
-                    children: []
+                    children: [],
                   },
                   {
                     eid: "b1b64f60-9aff-45cc-9daf-a8c8bc3dd576",
@@ -142,9 +143,9 @@ export default {
                     percent: "30.00%",
                     sh_type: "工商股东",
                     level: "3",
-                    children: []
-                  }
-                ]
+                    children: [],
+                  },
+                ],
               },
               {
                 eid: "507be026-2ea2-457c-ae32-fd253ea80285",
@@ -165,7 +166,7 @@ export default {
                     percent: "70.00%",
                     sh_type: "工商股东",
                     level: "3",
-                    children: []
+                    children: [],
                   },
                   {
                     eid: "",
@@ -176,9 +177,9 @@ export default {
                     percent: "30.00%",
                     sh_type: "工商股东",
                     level: "3",
-                    children: []
-                  }
-                ]
+                    children: [],
+                  },
+                ],
               },
               {
                 eid: "6bef88b8-f5a1-468b-b7c0-f47525a17772",
@@ -199,7 +200,7 @@ export default {
                     percent: "70.00%",
                     sh_type: "工商股东",
                     level: "3",
-                    children: []
+                    children: [],
                   },
                   {
                     eid: "",
@@ -210,9 +211,9 @@ export default {
                     percent: "30.00%",
                     sh_type: "工商股东",
                     level: "3",
-                    children: []
-                  }
-                ]
+                    children: [],
+                  },
+                ],
               },
               {
                 eid: "",
@@ -223,7 +224,7 @@ export default {
                 percent: "7.00%",
                 sh_type: "工商股东",
                 level: "2",
-                children: []
+                children: [],
               },
               {
                 eid: "e24e4b21-bb13-44cf-adf6-0c7f56598d99",
@@ -244,7 +245,7 @@ export default {
                     percent: "31.25%",
                     sh_type: "工商股东",
                     level: "3",
-                    children: []
+                    children: [],
                   },
                   {
                     eid: "",
@@ -255,7 +256,7 @@ export default {
                     percent: "31.25%",
                     sh_type: "工商股东",
                     level: "3",
-                    children: []
+                    children: [],
                   },
                   {
                     eid: "",
@@ -266,7 +267,7 @@ export default {
                     percent: "31.25%",
                     sh_type: "工商股东",
                     level: "3",
-                    children: []
+                    children: [],
                   },
                   {
                     eid: "",
@@ -277,9 +278,9 @@ export default {
                     percent: "6.25%",
                     sh_type: "工商股东",
                     level: "3",
-                    children: []
-                  }
-                ]
+                    children: [],
+                  },
+                ],
               },
               {
                 eid: "e2f1781d-f791-4b52-a19c-ccd9f2b61fc2",
@@ -300,9 +301,9 @@ export default {
                     percent: "100%",
                     sh_type: "工商股东",
                     level: "3",
-                    children: []
-                  }
-                ]
+                    children: [],
+                  },
+                ],
               },
               {
                 eid: "",
@@ -313,7 +314,7 @@ export default {
                 percent: "5.40%",
                 sh_type: "工商股东",
                 level: "2",
-                children: []
+                children: [],
               },
               {
                 eid: "c16963d1-3720-4faa-9df3-d4e29cf6a191",
@@ -324,7 +325,7 @@ export default {
                 percent: "4.00%",
                 sh_type: "工商股东",
                 level: "2",
-                children: []
+                children: [],
               },
               {
                 eid: "e6c491b4-2e0d-448e-8bf6-a45468db7f2b",
@@ -345,7 +346,7 @@ export default {
                     percent: "49.00%",
                     sh_type: "工商股东",
                     level: "3",
-                    children: []
+                    children: [],
                   },
                   {
                     eid: "",
@@ -356,7 +357,7 @@ export default {
                     percent: "40.00%",
                     sh_type: "工商股东",
                     level: "3",
-                    children: []
+                    children: [],
                   },
                   {
                     eid: "",
@@ -367,9 +368,9 @@ export default {
                     percent: "11.00%",
                     sh_type: "工商股东",
                     level: "3",
-                    children: []
-                  }
-                ]
+                    children: [],
+                  },
+                ],
               },
               {
                 eid: "fa7815b7-8fe3-4159-8374-58d6437f1f1a",
@@ -390,7 +391,7 @@ export default {
                     percent: "90.00%",
                     sh_type: "工商股东",
                     level: "3",
-                    children: []
+                    children: [],
                   },
                   {
                     eid: "",
@@ -401,9 +402,9 @@ export default {
                     percent: "10.00%",
                     sh_type: "工商股东",
                     level: "3",
-                    children: []
-                  }
-                ]
+                    children: [],
+                  },
+                ],
               },
               {
                 eid: "d9891cb1-cffa-4afd-90b9-b49ae78568db",
@@ -424,7 +425,7 @@ export default {
                     percent: "37.00%",
                     sh_type: "工商股东",
                     level: "3",
-                    children: []
+                    children: [],
                   },
                   {
                     eid: "",
@@ -435,7 +436,7 @@ export default {
                     percent: "30.00%",
                     sh_type: "工商股东",
                     level: "3",
-                    children: []
+                    children: [],
                   },
                   {
                     eid: "",
@@ -446,7 +447,7 @@ export default {
                     percent: "13.00%",
                     sh_type: "工商股东",
                     level: "3",
-                    children: []
+                    children: [],
                   },
                   {
                     eid: "",
@@ -457,7 +458,7 @@ export default {
                     percent: "13.00%",
                     sh_type: "工商股东",
                     level: "3",
-                    children: []
+                    children: [],
                   },
                   {
                     eid: "",
@@ -468,11 +469,11 @@ export default {
                     percent: "7.00%",
                     sh_type: "工商股东",
                     level: "3",
-                    children: []
-                  }
-                ]
-              }
-            ]
+                    children: [],
+                  },
+                ],
+              },
+            ],
           },
           {
             eid: "",
@@ -483,7 +484,7 @@ export default {
             percent: "8.85%",
             sh_type: "工商股东",
             level: "1",
-            children: []
+            children: [],
           },
           {
             eid: "",
@@ -494,7 +495,7 @@ export default {
             percent: "6.21%",
             sh_type: "工商股东",
             level: "1",
-            children: []
+            children: [],
           },
           {
             eid: "",
@@ -505,7 +506,7 @@ export default {
             percent: "6.21%",
             sh_type: "工商股东",
             level: "1",
-            children: []
+            children: [],
           },
           {
             eid: "",
@@ -516,7 +517,7 @@ export default {
             percent: "6.21%",
             sh_type: "工商股东",
             level: "1",
-            children: []
+            children: [],
           },
           {
             eid: "",
@@ -527,7 +528,7 @@ export default {
             percent: "4.73%",
             sh_type: "工商股东",
             level: "1",
-            children: []
+            children: [],
           },
           {
             eid: "f34a5e61-1632-4296-84c2-79d5ee696bda",
@@ -548,7 +549,7 @@ export default {
                 percent: "54.29%",
                 sh_type: "工商股东",
                 level: "2",
-                children: []
+                children: [],
               },
               {
                 eid: "",
@@ -559,7 +560,7 @@ export default {
                 percent: "22.86%",
                 sh_type: "工商股东",
                 level: "2",
-                children: []
+                children: [],
               },
               {
                 eid: "",
@@ -570,7 +571,7 @@ export default {
                 percent: "11.43%",
                 sh_type: "工商股东",
                 level: "2",
-                children: []
+                children: [],
               },
               {
                 eid: "",
@@ -581,9 +582,9 @@ export default {
                 percent: "11.43%",
                 sh_type: "工商股东",
                 level: "2",
-                children: []
-              }
-            ]
+                children: [],
+              },
+            ],
           },
           {
             eid: "",
@@ -594,7 +595,7 @@ export default {
             percent: "1.78%",
             sh_type: "工商股东",
             level: "1",
-            children: []
+            children: [],
           },
           {
             eid: "361a58ce-9e6d-4c4f-b105-5286701cfbdc",
@@ -605,7 +606,7 @@ export default {
             percent: "1.78%",
             sh_type: "工商股东",
             level: "1",
-            children: []
+            children: [],
           },
           {
             eid: "b5d5d864-92f8-48e0-85e5-c8d1e822d4e0",
@@ -626,7 +627,7 @@ export default {
                 percent: "10.05%",
                 sh_type: "工商股东",
                 level: "2",
-                children: []
+                children: [],
               },
               {
                 eid: "",
@@ -637,7 +638,7 @@ export default {
                 percent: "10.05%",
                 sh_type: "工商股东",
                 level: "2",
-                children: []
+                children: [],
               },
               {
                 eid: "",
@@ -648,7 +649,7 @@ export default {
                 percent: "10.05%",
                 sh_type: "工商股东",
                 level: "2",
-                children: []
+                children: [],
               },
               {
                 eid: "",
@@ -659,7 +660,7 @@ export default {
                 percent: "10.05%",
                 sh_type: "工商股东",
                 level: "2",
-                children: []
+                children: [],
               },
               {
                 eid: "",
@@ -670,7 +671,7 @@ export default {
                 percent: "10.05%",
                 sh_type: "工商股东",
                 level: "2",
-                children: []
+                children: [],
               },
               {
                 eid: "",
@@ -681,7 +682,7 @@ export default {
                 percent: "4.00%",
                 sh_type: "工商股东",
                 level: "2",
-                children: []
+                children: [],
               },
               {
                 eid: "",
@@ -692,7 +693,7 @@ export default {
                 percent: "4.00%",
                 sh_type: "工商股东",
                 level: "2",
-                children: []
+                children: [],
               },
               {
                 eid: "",
@@ -703,7 +704,7 @@ export default {
                 percent: "3.00%",
                 sh_type: "工商股东",
                 level: "2",
-                children: []
+                children: [],
               },
               {
                 eid: "",
@@ -714,7 +715,7 @@ export default {
                 percent: "3.00%",
                 sh_type: "工商股东",
                 level: "2",
-                children: []
+                children: [],
               },
               {
                 eid: "",
@@ -725,7 +726,7 @@ export default {
                 percent: "2.50%",
                 sh_type: "工商股东",
                 level: "2",
-                children: []
+                children: [],
               },
               {
                 eid: "",
@@ -736,7 +737,7 @@ export default {
                 percent: "2.50%",
                 sh_type: "工商股东",
                 level: "2",
-                children: []
+                children: [],
               },
               {
                 eid: "",
@@ -747,7 +748,7 @@ export default {
                 percent: "2.50%",
                 sh_type: "工商股东",
                 level: "2",
-                children: []
+                children: [],
               },
               {
                 eid: "",
@@ -758,7 +759,7 @@ export default {
                 percent: "2.50%",
                 sh_type: "工商股东",
                 level: "2",
-                children: []
+                children: [],
               },
               {
                 eid: "",
@@ -769,7 +770,7 @@ export default {
                 percent: "2.50%",
                 sh_type: "工商股东",
                 level: "2",
-                children: []
+                children: [],
               },
               {
                 eid: "",
@@ -780,7 +781,7 @@ export default {
                 percent: "2.50%",
                 sh_type: "工商股东",
                 level: "2",
-                children: []
+                children: [],
               },
               {
                 eid: "",
@@ -791,7 +792,7 @@ export default {
                 percent: "1.50%",
                 sh_type: "工商股东",
                 level: "2",
-                children: []
+                children: [],
               },
               {
                 eid: "",
@@ -802,7 +803,7 @@ export default {
                 percent: "1.50%",
                 sh_type: "工商股东",
                 level: "2",
-                children: []
+                children: [],
               },
               {
                 eid: "",
@@ -813,7 +814,7 @@ export default {
                 percent: "1.50%",
                 sh_type: "工商股东",
                 level: "2",
-                children: []
+                children: [],
               },
               {
                 eid: "",
@@ -824,7 +825,7 @@ export default {
                 percent: "1.50%",
                 sh_type: "工商股东",
                 level: "2",
-                children: []
+                children: [],
               },
               {
                 eid: "",
@@ -835,7 +836,7 @@ export default {
                 percent: "1.50%",
                 sh_type: "工商股东",
                 level: "2",
-                children: []
+                children: [],
               },
               {
                 eid: "",
@@ -846,7 +847,7 @@ export default {
                 percent: "1.50%",
                 sh_type: "工商股东",
                 level: "2",
-                children: []
+                children: [],
               },
               {
                 eid: "",
@@ -857,7 +858,7 @@ export default {
                 percent: "1.50%",
                 sh_type: "工商股东",
                 level: "2",
-                children: []
+                children: [],
               },
               {
                 eid: "",
@@ -868,7 +869,7 @@ export default {
                 percent: "1.50%",
                 sh_type: "工商股东",
                 level: "2",
-                children: []
+                children: [],
               },
               {
                 eid: "",
@@ -879,7 +880,7 @@ export default {
                 percent: "1.50%",
                 sh_type: "工商股东",
                 level: "2",
-                children: []
+                children: [],
               },
               {
                 eid: "",
@@ -890,7 +891,7 @@ export default {
                 percent: "1.50%",
                 sh_type: "工商股东",
                 level: "2",
-                children: []
+                children: [],
               },
               {
                 eid: "",
@@ -901,7 +902,7 @@ export default {
                 percent: "1.50%",
                 sh_type: "工商股东",
                 level: "2",
-                children: []
+                children: [],
               },
               {
                 eid: "",
@@ -912,7 +913,7 @@ export default {
                 percent: "1.50%",
                 sh_type: "工商股东",
                 level: "2",
-                children: []
+                children: [],
               },
               {
                 eid: "",
@@ -923,7 +924,7 @@ export default {
                 percent: "1.50%",
                 sh_type: "工商股东",
                 level: "2",
-                children: []
+                children: [],
               },
               {
                 eid: "",
@@ -934,9 +935,9 @@ export default {
                 percent: "1.25%",
                 sh_type: "工商股东",
                 level: "2",
-                children: []
-              }
-            ]
+                children: [],
+              },
+            ],
           },
           {
             eid: "",
@@ -947,7 +948,7 @@ export default {
             percent: "1.76%",
             sh_type: "工商股东",
             level: "1",
-            children: []
+            children: [],
           },
           {
             eid: "",
@@ -958,10 +959,10 @@ export default {
             percent: "1.76%",
             sh_type: "工商股东",
             level: "1",
-            children: []
-          }
-        ]
-      }
+            children: [],
+          },
+        ],
+      },
     };
   },
   methods: {
@@ -973,7 +974,7 @@ export default {
         tooltip: {
           trigger: "item",
           triggerOn: "mousemove",
-          formatter: function() {}
+          formatter: function () {},
         },
         calculable: true,
         series: [
@@ -999,11 +1000,11 @@ export default {
             initialTreeDepth: 1, //树图初始展开的层级（深度）。根节点是第 0 层
             scaleLimit: {
               min: 0.5, //最小的缩放值
-              max: 1 //最大的缩放值
+              max: 1, //最大的缩放值
             },
             lineStyle: {
               //边的样式
-              curveness: 0.9 //弯曲度
+              curveness: 0.9, //弯曲度
             },
             itemStyle: {
               //节点样式
@@ -1016,23 +1017,23 @@ export default {
                 colorStops: [
                   {
                     offset: 0,
-                    color: "#FFFFFF" // 0% 处的颜色
+                    color: "#FFFFFF", // 0% 处的颜色
                   },
                   {
                     offset: 0.5,
-                    color: "#2FA4F3" // 50% 处的颜色
+                    color: "#2FA4F3", // 50% 处的颜色
                   },
                   {
                     offset: 1,
-                    color: "#FFFFFF" // 100% 处的颜色
-                  }
+                    color: "#FFFFFF", // 100% 处的颜色
+                  },
                 ],
-                global: false // 缺省为 false
+                global: false, // 缺省为 false
               },
               shadowColor: "#2FA4F3",
               borderColor: "#fff",
               shadowBlur: 8,
-              opacity: 0.9
+              opacity: 0.9,
             },
             label: {
               //节点所对应的文本标签的样式
@@ -1057,7 +1058,7 @@ export default {
                   align: "center",
                   color: "#fff",
                   fontWeight: "bold",
-                  borderColor: "#65A1EA"
+                  borderColor: "#65A1EA",
                 },
                 flaseTitle: {
                   fontSize: 12,
@@ -1068,7 +1069,7 @@ export default {
                   width: 160,
                   color: "#000",
                   fontWeight: "bold",
-                  borderWidth: 0
+                  borderWidth: 0,
                 },
                 title: {
                   fontSize: 12,
@@ -1079,7 +1080,7 @@ export default {
                   width: 160,
                   color: "#000",
                   fontWeight: "bold",
-                  borderWidth: 0
+                  borderWidth: 0,
                 },
                 context1: {
                   fontSize: 12,
@@ -1088,7 +1089,7 @@ export default {
                   height: 20,
                   lineHeight: 20,
                   width: 160,
-                  color: "#000"
+                  color: "#000",
                 },
                 context2: {
                   fontSize: 12,
@@ -1097,16 +1098,16 @@ export default {
                   height: 20,
                   lineHeight: 20,
                   width: 160,
-                  color: "#000"
+                  color: "#000",
                 },
                 after: {
                   //伪类
                   height: 4,
                   width: 160,
-                  backgroundColor: "#65A1EA"
-                }
+                  backgroundColor: "#65A1EA",
+                },
               },
-              formatter: function(params) {
+              formatter: function (params) {
                 if (
                   params.data.level === "0" &&
                   params.data.short_name.length < 12
@@ -1146,14 +1147,14 @@ export default {
                   "\n" +
                   "{after|}"
                 );
-              }
+              },
             },
             leaves: {
               label: {
                 // position: 'left',
                 // verticalAlign: 'middle',
                 // align: 'right'
-              }
+              },
             },
             emphasis: {
               label: {
@@ -1172,7 +1173,7 @@ export default {
                     align: "center",
                     color: "#fff",
                     fontWeight: "bold",
-                    borderColor: "#65A1EA"
+                    borderColor: "#65A1EA",
                   },
                   flaseTitle: {
                     fontSize: 12,
@@ -1183,7 +1184,7 @@ export default {
                     width: 160,
                     color: "#000",
                     fontWeight: "bold",
-                    borderWidth: 0
+                    borderWidth: 0,
                   },
                   title: {
                     fontSize: 12,
@@ -1194,7 +1195,7 @@ export default {
                     width: 160,
                     color: "#000",
                     fontWeight: "bold",
-                    borderWidth: 0
+                    borderWidth: 0,
                   },
                   context1: {
                     fontSize: 12,
@@ -1203,7 +1204,7 @@ export default {
                     height: 20,
                     lineHeight: 20,
                     width: 160,
-                    color: "#000"
+                    color: "#000",
                   },
                   context2: {
                     fontSize: 12,
@@ -1212,16 +1213,16 @@ export default {
                     height: 20,
                     lineHeight: 20,
                     width: 160,
-                    color: "#000"
+                    color: "#000",
                   },
                   after: {
                     //伪类
                     height: 4,
                     width: 160,
-                    backgroundColor: "#65A1EA"
-                  }
+                    backgroundColor: "#65A1EA",
+                  },
                 },
-                formatter: function(params) {
+                formatter: function (params) {
                   if (
                     params.data.level === "0" &&
                     params.data.short_name.length < 12
@@ -1263,12 +1264,12 @@ export default {
                     "\n" +
                     "{after|}"
                   );
-                }
-              }
+                },
+              },
             },
-            animationDurationUpdate: 1000
-          }
-        ]
+            animationDurationUpdate: 1000,
+          },
+        ],
       };
       this.myChart.setOption(option);
       /*  自适应 */
@@ -1284,7 +1285,7 @@ export default {
       var arrMap = new Map();
       var key = arr[0],
         value = 1;
-      arr.forEach(item => {
+      arr.forEach((item) => {
         if (arrMap.get(item) !== undefined) {
           let num = arrMap.get(item);
           arrMap.set(item, ++num);
@@ -1405,7 +1406,7 @@ export default {
         this.ratio = 1;
         this.createInitChart();
       });
-    }
+    },
   },
   created() {
     /* 初始化宽高 */
@@ -1415,7 +1416,7 @@ export default {
       this.initHeight = this.$refs.myChart.getBoundingClientRect().height; //初始宽高
       this.initWidth = this.$refs.myChart.getBoundingClientRect().width;
     });
-  }
+  },
 };
 </script>
 
